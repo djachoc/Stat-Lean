@@ -10,6 +10,14 @@ export interface Member {
 
 export const MEMBERS: Member[] = [
   {
+    name: "Jianqing Fan",
+    role: "Frederick L. Moore '18 Professor of Finance",
+    department: "Department of Operations Research and Financial Engineering",
+    university: "Princeton University",
+    homepage: "https://fan.princeton.edu/",
+    photo: "Jianqing_Fan.jpg",
+  },
+  {
     name: "Junwei Lu",
     role: "Associate Professor",
     department: "Department of Biostatistics",
