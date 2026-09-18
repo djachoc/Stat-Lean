@@ -7,6 +7,14 @@ Bayesian statistics, concentration inequalities, high-dimensional statistics,
 minimaxity, multiple testing, and optimization. Contributions of new theorems,
 improved proofs, website content, and documentation are all welcome.
 
+## Contributor responsibility
+
+Contributors should be responsible for the code they submit, including its
+definitions, assumptions, theorem statements, and proofs. They should be
+prepared to explain relevant mathematical and implementation choices and
+address review feedback. These expectations apply equally to AI-assisted
+contributions.
+
 ## Getting started
 
 1. Fork the repository and clone your fork.
@@ -33,8 +41,11 @@ If you want to add a new theorem or definition:
   - `leanSignature` — the verbatim Lean `theorem`/`def` header
   - `hypotheses` — the list mapping Lean hypothesis names to their
     informal descriptions (used for hover-highlighting)
-  - `citation` — the theorem/lemma number in the area's source text
-    (e.g., van der Vaart 1998; Lu 2025; Wainwright 2019; Robert 2007)
+  - `citation` — the required website citation field; for a sourced result,
+    identify the theorem/lemma in the source text. See the
+    [website contribution guide](website/CONTRIBUTING.md) for the data format.
+    If no published source applies, identify the contributor-provided statement
+    or project documentation.
 
 ### Improving existing proofs
 
@@ -62,15 +73,27 @@ describing the problem or suggestion.
 ## Pull request guidelines
 
 - **Branch from `main`** — create a feature branch (`git checkout -b my-feature`).
-- **One logical change per PR** — separate new formalizations from refactors
-  from website edits.
+- **One logical change per PR** — keep related Lean code, result pages, and
+  documentation together; separate unrelated refactors or website edits.
 - **All files must compile** — run `lake build` (and for website changes,
   `npm run build` inside `website/`) before opening a PR.
 - **Commit messages** — use a short imperative subject line, e.g.:
   `Add Donsker theorem for VC classes` or `Fix: remove sorry in LANExpansion`.
-- **Describe the mathematical content** — in the PR body, state which theorem
-  or definition you are adding/changing and its reference in the relevant
-  source text (book or paper, with theorem/section number).
+- **Describe the mathematical content** — provide or link to a clear
+  natural-language statement, including relevant definitions, assumptions,
+  and conclusions, and explain its intended use. For existing results,
+  highlight changes to definitions, assumptions, conclusions, or public
+  interfaces. Include references where applicable; claims of correspondence
+  with a particular published result should identify its source and location.
+
+## Review process
+
+Contributions are reviewed for mathematical accuracy, clarity, and
+maintainability, including whether the Lean formalization matches the stated
+mathematical content. Reviewers consider the documented validation results
+alongside the code and mathematical statement. Maintainers make the final
+acceptance decision. See [Reviewing contributions](REVIEWING.md) for the
+review guidelines.
 
 ## Code style
 

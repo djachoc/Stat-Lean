@@ -34,6 +34,7 @@ export function SiteFooter() {
           </div>
           <ul className="space-y-1.5 text-ink-soft">
             <li><a className="ulink" href={REPO_URL}>Source repository</a></li>
+            <li><a className="ulink" href={`${REPO_URL}/blob/main/CONTRIBUTING.md`}>Contribution &amp; Review</a></li>
             <li><a className="ulink" href={DOCS_BASE}>doc-gen4 API reference</a></li>
           </ul>
         </div>
