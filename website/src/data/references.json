@@ -830,6 +830,11 @@
     "html": "B. Efron and C. Morris, \"Data analysis using Stein's estimator and its generalizations,\" *Journal of the American Statistical Association* **70**(350), 1975, pp. 311–319."
   },
   {
+    "key": "efron-stein1981",
+    "sortKey": "Efron",
+    "html": "B. Efron and C. Stein, “The jackknife estimate of variance,” *The Annals of Statistics* **9**(3), 1981, pp. 586–596."
+  },
+  {
     "key": "efron-tibshirani-storey-tusher2001",
     "sortKey": "Efron",
     "html": "B. Efron, R. Tibshirani, J. D. Storey, and V. Tusher, \"Empirical Bayes analysis of a microarray experiment,\" *Journal of the American Statistical Association* **96**(456), 2001, pp. 1151–1160."

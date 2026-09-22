@@ -17,9 +17,9 @@ $$ v \;=\; \tfrac12 \sum_{i=1}^n \mathbf{E}\bigl[(Z - Z_i')^2\bigr], \qquad
    Z_i' = f(X_1, \dots, X_i', \dots, X_n), $$
 which is the form in which the bound is actually applied.
 
-The inequality $\operatorname{Var}(Z) \le v$ itself is **not** in this file; it needs the
-Doob-martingale decomposition along the natural filtration and is the next step of this
-development.
+The inequality $\operatorname{Var}(Z) \le v$ itself is proved in
+`EfronStein/Tensorization.lean`, by tensorization of the variance over blocks of
+coordinates.
 
 **Reference.** Stéphane Boucheron, Gábor Lugosi and Pascal Massart, *Concentration
 Inequalities: A Nonasymptotic Theory of Independence*, Oxford University Press, 2013
