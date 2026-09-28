@@ -53,14 +53,11 @@ over, giving the factor $\tfrac12$. Square-integrability of the slices and of
 measure-preserving map, with `sq_integral_le_integral_sq` (Jensen) dominating
 $(\mathbf{E}^{(i)}Z)^2$ by $\mathbf{E}^{(i)}[Z^2]$.
 
-**Bibliographic comments.** Attribution is taken verbatim from the source's own
-bibliographic remarks (Boucheron–Lugosi–Massart, §3.9), and no further bibliographic
-detail is asserted here: "The Efron-Stein inequality got its name from the paper of Efron
-and Stein (1981). While the original result of Efron and Stein had some extra conditions
-and came with a sub-optimal constant, Steele (1986) and Rhee and Talagrand (1986) obtained
-improved versions and the form presented in Theorem 3.1. The proof shown in Section 3.1
-appears in Rhee and Talagrand (1986)." The proof formalized here is therefore Rhee and
-Talagrand's, as reproduced in §3.1.
+**Bibliographic comments.** Boucheron–Lugosi–Massart §3.9 credits improved forms of the
+inequality to Steele (1986) and Rhee and Talagrand (1986), and says that the
+martingale-difference proof shown in its §3.1 appears in Rhee and Talagrand (1986). The
+formalization in `EfronStein/Tensorization.lean` instead proves the inequality through a
+block-tensorization recursion on the canonical product space.
 -/
 
 open MeasureTheory ProbabilityTheory Set

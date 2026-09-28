@@ -13,16 +13,15 @@ carries `measurePreserving_piEquivPiSubtypeProd` and `measurePreserving_piFinSuc
 but nothing about `Function.update`; `Mathlib/MeasureTheory/Integral/Marginal.lean` has
 the `ℝ≥0∞`-valued `lmarginal` only). Mathlib-only imports — candidate upstream.
 
-This is the single place where independence enters the Efron–Stein development: it is
-identity (3.1) of Boucheron–Lugosi–Massart in the concrete product model, and it is what
-licenses reading $Z_i' = f(X_1, \dots, X_i', \dots, X_n)$ as an independent copy of $Z$
-conditionally on $X^{(i)}$.
+This is the product-space mechanism through which independence enters the Efron–Stein
+development. It licenses reading $Z_i' = f(X_1, \dots, X_i', \dots, X_n)$ as an
+independent copy of $Z$ conditionally on $X^{(i)}$.
 
 **Reference.** Stéphane Boucheron, Gábor Lugosi and Pascal Massart, *Concentration
 Inequalities: A Nonasymptotic Theory of Independence*, Oxford University Press, 2013
-(ISBN 978-0-19-953525-5), §3.1, equation (3.1) and the surrounding Fubini discussion:
-"Up to now, we have not made any use of the fact that $Z$ is a function of independent
-variables $X_1, \dots, X_n$ … Independence enters only through (3.1)."
+(ISBN 978-0-19-953525-5), §3.1, p. 54, for the coordinatewise integral formulas and
+surrounding Fubini discussion. Equation (3.1) there is the conditional-expectation identity
+$\mathbf{E}_i[\mathbf{E}^{(i)}Z] = \mathbf{E}_{i-1}Z$.
 
 **Proof formalization notes.** `Measure.pi_eq` reduces the pushforward identity to
 measurable rectangles. The preimage of `Set.univ.pi s` under the update map is
@@ -85,7 +84,8 @@ variable [Fintype ι] (μ : ∀ i, Measure (𝓧 i)) [∀ i, IsProbabilityMeasur
 
 /-- **Resampling one coordinate preserves the product law.** For probability measures
 `μ j`, the map `(x, y) ↦ Function.update x i y` pushes `(⨂ⱼ μ j) ⊗ μ i` forward to
-`⨂ⱼ μ j` (Boucheron–Lugosi–Massart 2013, §3.1, identity (3.1)). -/
+`⨂ⱼ μ j` (cf. the product-space and Fubini discussion in
+Boucheron–Lugosi–Massart 2013, §3.1, p. 54). -/
 theorem measurePreserving_updateAt (i : ι) :
     MeasurePreserving (fun p : (Π j, 𝓧 j) × 𝓧 i => Function.update p.1 i p.2)
       ((Measure.pi μ).prod (μ i)) (Measure.pi μ) := by

@@ -20,8 +20,8 @@ The file ends with `variance_le_efronSteinBound`, the Efron–Stein inequality i
 **Reference.** Stéphane Boucheron, Gábor Lugosi and Pascal Massart, *Concentration
 Inequalities: A Nonasymptotic Theory of Independence*, Oxford University Press, 2013
 (ISBN 978-0-19-953525-5), §3.1. The book runs the argument through the Doob martingale of
-the natural filtration; the block recursion here is the same decomposition, organized so
-that everything stays on the canonical product space.
+the natural filtration; this file instead proves the inequality through a block recursion
+that stays on the canonical product space.
 
 **Proof formalization notes.** `avgOn S f x` integrates the *whole* product measure but
 only uses the `S`-coordinates of the integrating variable (see `ForMathlib/PiMix`), which

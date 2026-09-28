@@ -41421,7 +41421,7 @@
     "informal": "<p>Let $X = (X_1, \\dots, X_n)$ be a sample whose <span data-link=\"h1\">coordinates are independent</span>, not necessarily identically distributed, and let $Z = f(X)$ for a <span data-link=\"h3\">measurable</span> function $f$ with a <span data-link=\"h2\">finite second moment</span>. Write $$\\mathbf{E}^{(i)} Z \\;=\\; \\int f(X_1, \\dots, x_i, \\dots, X_n) \\, d\\mu_i(x_i)$$ for the average of $Z$ over a fresh draw of the $i$-th coordinate, every other coordinate held fixed. Then $$\\operatorname{Var}(Z) \\;\\le\\; \\sum_{i=1}^{n} \\mathbb{E}\\bigl[(Z - \\mathbf{E}^{(i)} Z)^2\\bigr].$$ The bound is an equality when $Z = X_1 + \\dots + X_n$, so it cannot be improved in general.</p>",
     "summary": "The variance of a square-integrable function of independent coordinates is at most the sum, over coordinates, of the expected squared deviation from its average over a fresh draw of that coordinate.",
     "leanSignature": "theorem variance_le_efronSteinBound\n    {ι : Type*} [Fintype ι] [DecidableEq ι] {𝓧 : ι → Type*}\n    [∀ i, MeasurableSpace (𝓧 i)] (μ : ∀ i, Measure (𝓧 i))\n    [∀ i, IsProbabilityMeasure (μ i)] {f : (Π j, 𝓧 j) → ℝ}\n    (hfm : Measurable f) (hf : MemLp f 2 (Measure.pi μ)) :\n    Var[f; Measure.pi μ] ≤ efronSteinBound μ f",
-    "formalizationNotes": "The independent coordinates are realized canonically as the coordinates of a finite product of probability spaces, so the leave-one-out conditional mean $\\mathbf{E}^{(i)}$ is a plain integral in one coordinate rather than a conditional expectation, and no filtration is needed. The source runs the argument through the Doob martingale of the natural filtration; the formalization instead tensorizes the variance over blocks of coordinates, by induction on a finite set $S$ of coordinates: growing $S$ by one coordinate adds exactly the variance of the block average in that coordinate (the law of total variance), and Jensen's inequality bounds that increment by the corresponding Efron-Stein summand. Independence enters at exactly one point, the fact that redrawing a coordinate leaves the product law unchanged, which is equation (3.1) of the source. Theorem 3.1 is not the theorem proved by Efron and Stein in 1981; see the bibliographic comments.",
+    "formalizationNotes": "The independent coordinates are realized canonically as the coordinates of a finite product of probability spaces, so the leave-one-out conditional mean $\\mathbf{E}^{(i)}$ is a plain integral in one coordinate rather than a conditional expectation, and no filtration is needed. The source runs the argument through the Doob martingale of the natural filtration; the formalization instead tensorizes the variance over blocks of coordinates, by induction on a finite set $S$ of coordinates: growing $S$ by one coordinate adds exactly the variance of the block average in that coordinate (the law of total variance), and Jensen's inequality bounds that increment by the corresponding Efron-Stein summand. Independence enters through the fact that redrawing a coordinate leaves the product law unchanged, proved here directly from the product-measure construction. Theorem 3.1 is not the theorem proved by Efron and Stein in 1981; see the bibliographic comments.",
     "hypotheses": [
       {
         "id": "h1",
@@ -41448,9 +41448,11 @@
       "pointer": "§3.1, Theorem 3.1",
       "keys": [
         "blm2013",
-        "efron-stein1981"
+        "efron-stein1981",
+        "rhee-talagrand1986",
+        "steele1986"
       ],
-      "biblio": "The inequality takes its name from B. Efron and C. Stein, “The jackknife estimate of variance,” *The Annals of Statistics* **9**(3), 1981, pp. 586–596. That paper proves a different statement: its Theorem 1 assumes the coordinates independent and identically distributed and $f$ symmetric in its arguments, and gives an exact identity for the bias of the jackknife estimate of variance, while its Theorem 2 constrains the variance of the average of the leave-one-out statistics. The end-of-chapter notes record that the original result “had some extra conditions and came with a sub-optimal constant,” and credit the sharp form stated here, together with the proof, to Steele (1986) and to Rhee and Talagrand (1986)."
+      "biblio": "The inequality takes its name from B. Efron and C. Stein, “The jackknife estimate of variance,” *The Annals of Statistics* **9**(3), 1981, pp. 586–596. That paper proves a different statement: its Theorem 1 assumes the coordinates independent and identically distributed and $f$ symmetric in its arguments, and gives an exact identity for the bias of the jackknife estimate of variance, while its Theorem 2 constrains the variance of the average of the leave-one-out statistics. Boucheron–Lugosi–Massart §3.9 credits improved forms to Steele (1986) and Rhee and Talagrand (1986), and notes that its martingale-difference proof in §3.1 appears in Rhee and Talagrand (1986)."
     },
     "keywords": [
       "Efron-Stein inequality",
@@ -41499,9 +41501,11 @@
       "pointer": "§3.1, Theorem 3.1",
       "keys": [
         "blm2013",
-        "efron-stein1981"
+        "efron-stein1981",
+        "rhee-talagrand1986",
+        "steele1986"
       ],
-      "biblio": "The inequality takes its name from B. Efron and C. Stein, “The jackknife estimate of variance,” *The Annals of Statistics* **9**(3), 1981, pp. 586–596. That paper proves a different statement: its Theorem 1 assumes the coordinates independent and identically distributed and $f$ symmetric in its arguments, and gives an exact identity for the bias of the jackknife estimate of variance, while its Theorem 2 constrains the variance of the average of the leave-one-out statistics. The end-of-chapter notes record that the original result “had some extra conditions and came with a sub-optimal constant,” and credit the sharp form stated here, together with the proof, to Steele (1986) and to Rhee and Talagrand (1986)."
+      "biblio": "The inequality takes its name from B. Efron and C. Stein, “The jackknife estimate of variance,” *The Annals of Statistics* **9**(3), 1981, pp. 586–596. That paper proves a different statement: its Theorem 1 assumes the coordinates independent and identically distributed and $f$ symmetric in its arguments, and gives an exact identity for the bias of the jackknife estimate of variance, while its Theorem 2 constrains the variance of the average of the leave-one-out statistics. Boucheron–Lugosi–Massart §3.9 credits improved forms to Steele (1986) and Rhee and Talagrand (1986), and notes that its martingale-difference proof in §3.1 appears in Rhee and Talagrand (1986)."
     },
     "keywords": [
       "Efron-Stein inequality",
