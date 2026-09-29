@@ -41461,6 +41461,71 @@
     ]
   },
   {
+    "id": "conc-efron-stein-indep",
+    "category": "concentration",
+    "kind": "theorem",
+    "leanName": "variance_le_efronSteinBound_of_iIndepFun",
+    "fullName": "StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun",
+    "title": "Efron–Stein Inequality for Independent Random Variables",
+    "citation": "Boucheron, Lugosi & Massart (2013), Thm 3.1",
+    "shortRef": "Boucheron–Lugosi–Massart (2013), Thm 3.1",
+    "file": "StatLean/ConcentrationInequalities/EfronStein/IndepFun.lean",
+    "docGenUrl": "../docs/StatLean/ConcentrationInequalities/EfronStein/IndepFun.html#StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun",
+    "informal": "<p>Let <span data-link=\"h1\">$(\\Omega, \\mathcal F, P)$ be a probability space</span>, and let $X_1, \\dots, X_n$ be <span data-link=\"h2\">measurable</span>, <span data-link=\"h3\">independent</span> random variables with respective laws $\\mu_1, \\dots, \\mu_n$; they need not be identically distributed. For a <span data-link=\"h4\">measurable</span> function $f$, suppose $Z=f(X_1,\\dots,X_n)$ has a <span data-link=\"h5\">finite second moment</span>. Write $$\\mathbf{E}^{(i)} Z \\;=\\; \\int f(X_1, \\dots, x_i, \\dots, X_n) \\, d\\mu_i(x_i)$$ for the average over a fresh draw from the $i$-th marginal law, every other coordinate held fixed. Then $$\\operatorname{Var}_P(Z) \\;\\le\\; \\sum_{i=1}^{n} \\mathbb{E}_P\\bigl[(Z-\\mathbf{E}^{(i)}Z)^2\\bigr].$$</p>",
+    "summary": "A square-integrable function of independent random variables on an arbitrary probability space satisfies the Efron–Stein variance bound computed from their marginal laws.",
+    "leanSignature": "theorem variance_le_efronSteinBound_of_iIndepFun\n    {Ω : Type*} {mΩ : MeasurableSpace Ω} {P : Measure Ω}\n    [IsProbabilityMeasure P]\n    {ι : Type*} [Fintype ι] [DecidableEq ι]\n    {𝓧 : ι → Type*} [∀ i, MeasurableSpace (𝓧 i)]\n    {X : (i : ι) → Ω → 𝓧 i}\n    (hX_meas : ∀ i, Measurable (X i))\n    (hX_indep : iIndepFun X P)\n    {f : (Π i, 𝓧 i) → ℝ}\n    (hf_meas : Measurable f)\n    (hf : MemLp (fun ω => f (fun i => X i ω)) 2 P) :\n    Var[fun ω => f (fun i => X i ω); P]\n      ≤ efronSteinBound (fun i => P.map (X i)) f",
+    "formalizationNotes": "This is the abstract-probability-space interface to the canonical product-space theorem. Independence identifies the joint law of the family with the product of its marginal laws; square-integrability and variance are transported across that identity, after which `variance_le_efronSteinBound` applies. The right-hand side is therefore the same coordinate-resampling bound, expressed using the marginal laws $P \\circ X_i^{-1}$. No identical-distribution assumption is imposed.",
+    "hypotheses": [
+      {
+        "id": "h1",
+        "leanToken": "IsProbabilityMeasure P",
+        "label": "Probability space",
+        "note": "$P$ is a probability measure on the underlying sample space."
+      },
+      {
+        "id": "h2",
+        "leanToken": "hX_meas",
+        "label": "Measurable variables",
+        "note": "Every coordinate random variable $X_i$ is measurable."
+      },
+      {
+        "id": "h3",
+        "leanToken": "hX_indep",
+        "label": "Independent variables",
+        "note": "The finite family $(X_i)_i$ is jointly independent under $P$."
+      },
+      {
+        "id": "h4",
+        "leanToken": "hf_meas",
+        "label": "Measurable function",
+        "note": "$f$ is measurable on the product of the coordinate spaces."
+      },
+      {
+        "id": "h5",
+        "leanToken": "hf : MemLp",
+        "label": "Square-integrable",
+        "note": "$f(X_1,\\dots,X_n)$ has a finite second moment under $P$."
+      }
+    ],
+    "hasGraph": true,
+    "reference": {
+      "formal": "S. Boucheron, G. Lugosi and P. Massart, *Concentration Inequalities: A Nonasymptotic Theory of Independence*, Oxford University Press, 2013.",
+      "pointer": "§3.1, Theorem 3.1",
+      "keys": [
+        "blm2013",
+        "efron-stein1981",
+        "rhee-talagrand1986",
+        "steele1986"
+      ],
+      "biblio": "The inequality takes its name from B. Efron and C. Stein, “The jackknife estimate of variance,” *The Annals of Statistics* **9**(3), 1981, pp. 586–596. That early result imposed extra conditions and had a suboptimal constant; improved forms were obtained by Steele (1986) and Rhee and Talagrand (1986)."
+    },
+    "keywords": [
+      "Efron–Stein inequality",
+      "independent random variables",
+      "variance bound"
+    ]
+  },
+  {
     "id": "conc-efron-stein-resample",
     "category": "concentration",
     "kind": "theorem",

@@ -71,7 +71,7 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι] {𝓧 : ι → Type*}
 `i`-th coordinate, holding every other coordinate fixed. Under the measurability and
 integrability hypotheses used below, it is a version of the conditional expectation of
 `f` given all coordinates other than `i`; this identification with Mathlib's `condExp`
-is not formalized in this PR. -/
+is not formalized here. -/
 noncomputable def condMeanAt (i : ι) (f : (Π j, 𝓧 j) → ℝ) (x : Π j, 𝓧 j) : ℝ :=
   ∫ y, f (Function.update x i y) ∂(μ i)
 
