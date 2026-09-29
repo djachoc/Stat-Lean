@@ -23,20 +23,28 @@ coordinates.
 
 **Reference.** Stéphane Boucheron, Gábor Lugosi and Pascal Massart, *Concentration
 Inequalities: A Nonasymptotic Theory of Independence*, Oxford University Press, 2013
-(ISBN 978-0-19-953525-5), §3.1, Theorem 3.1 (the Efron–Stein inequality), together with
-the unlabelled "leave-one-out vector and conditional expectation operators" construction
-that opens the section. The identity proved here is the chain
+(ISBN 978-0-19-953525-5), §3.1, Theorem 3.1 and its proof. The
+discussion immediately before the theorem defines $X^{(i)}$, the vector with the $i$-th
+coordinate omitted, and $\mathbf{E}^{(i)}$, expectation over that coordinate. The identity
+proved here is the chain
 $v = \sum_i \mathbf{E}[\operatorname{Var}^{(i)}(Z)] = \tfrac12 \sum_i
 \mathbf{E}[(Z - Z_i')^2]$ inside the proof of Theorem 3.1.
 
-**Relation to the 1981 result.** Boucheron–Lugosi–Massart §3.9 describes the result of
-B. Efron and C. Stein, "The jackknife estimate of variance", *Ann. Statist.* **9**
-(1981), 586–596, as an earlier version with extra conditions and a suboptimal constant;
-it credits Steele (1986) and Rhee and Talagrand (1986) with improved versions and the
-form presented in Theorem 3.1. The 1981 paper works from the jackknife setting of a
-symmetric statistic of i.i.d. observations: its Theorem 1 gives an exact jackknife-bias
-identity, while Theorem 2 bounds the variance of the average leave-one-out statistic.
-The theorem formalized here is the broader, improved form stated by Boucheron–Lugosi–Massart.
+**Relation to the 1981 result.** B. Efron and C. Stein, "The jackknife estimate of
+variance", *Ann. Statist.* **9** (1981), 586–596, is the paper discussed in
+Boucheron–Lugosi–Massart §3.9: "While the original result of Efron and Stein had some
+extra conditions and came with a sub-optimal constant, Steele (1986) and Rhee and
+Talagrand (1986) obtained improved versions and the form presented in Theorem 3.1."
+For a symmetric statistic $S$ of i.i.d. observations,
+Theorem 1 of the 1981 paper gives an exact formula for the bias of the natural jackknife
+estimate of $\operatorname{Var} S(X_1,\ldots,X_{n-1})$. Theorem 2 drops symmetry and
+identical distribution in the paper's leave-one-out setting: for independent observations
+it proves
+$\mathbf{E}\sum_i(S_{(i)}-S_{(\cdot)})^2 \ge n^{-1}\sum_i\operatorname{Var}(S_{(i)})
+\ge \frac{n}{n-1}\operatorname{Var}(S_{(\cdot)})$, where $S_{(i)}$ is the statistic
+computed with observation $i$ deleted and $S_{(\cdot)}$ is the average of the
+$S_{(i)}$. The theorem formalized here is the improved form presented as Theorem 3.1 by
+Boucheron–Lugosi–Massart.
 
 **Proof formalization notes.** Everything is done on the canonical product space, so
 $\mathbf{E}^{(i)}$ is a plain integral in one coordinate rather than a conditional
@@ -44,18 +52,18 @@ expectation, and no filtration is needed. Two facts carry the argument:
 `integral_sub_sq_right` (ForMathlib/VarianceResample) evaluates the inner integral
 $\int (g(a) - g(b))^2 \, d\nu(b) = (g(a) - \nu[g])^2 + \operatorname{Var}(g)$, and
 `integral_integral_update` (ForMathlib/PiUpdate) says that averaging over a fresh $i$-th
-coordinate leaves an expectation unchanged — this is where independence enters. Combining
-them turns $\mathbf{E}[(Z - Z_i')^2]$ into $\mathbf{E}[(Z - \mathbf{E}^{(i)}Z)^2]$ twice
+coordinate leaves an expectation unchanged — this is where independence enters the
+resampling identity. Combining them turns $\mathbf{E}[(Z - Z_i')^2]$ into
+$\mathbf{E}[(Z - \mathbf{E}^{(i)}Z)^2]$ twice
 over, giving the factor $\tfrac12$. Square-integrability of the slices and of
 `condMeanAt` is obtained by transporting `MemLp.integrable_sq` across the same
 measure-preserving map, with `sq_integral_le_integral_sq` (Jensen) dominating
 $(\mathbf{E}^{(i)}Z)^2$ by $\mathbf{E}^{(i)}[Z^2]$.
 
-**Bibliographic comments.** Boucheron–Lugosi–Massart §3.9 credits improved forms of the
-inequality to Steele (1986) and Rhee and Talagrand (1986), and says that the
-martingale-difference proof shown in its §3.1 appears in Rhee and Talagrand (1986). The
-formalization in `EfronStein/Tensorization.lean` instead proves the inequality through a
-block-tensorization recursion on the canonical product space.
+**Bibliographic comments.** Boucheron–Lugosi–Massart §3.9 says: "The proof shown in
+Section 3.1 appears in Rhee and Talagrand (1986)." The formalization in
+`EfronStein/Tensorization.lean` realizes the same variance decomposition and Jensen step
+through a block-tensorization recursion on the canonical product space.
 -/
 
 open MeasureTheory ProbabilityTheory Set

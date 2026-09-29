@@ -3,9 +3,10 @@
   "nodes": [
     {"id":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun","label":"variance_le_efronSteinBound_of_iIndepFun","full":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun","kind":"root","decl":"thm","module":"StatLean.ConcentrationInequalities.EfronStein.IndepFun"},
     {"id":"StatLean.ConcentrationInequalities.efronSteinBound","label":"efronSteinBound","full":"StatLean.ConcentrationInequalities.efronSteinBound","kind":"repo","decl":"def","module":"StatLean.ConcentrationInequalities.EfronStein.Defs"},
-    {"id":"measurable_pi_lambda","label":"measurable_pi_lambda","full":"measurable_pi_lambda","kind":"mathlib","decl":"thm","module":"Mathlib.MeasureTheory.MeasurableSpace.Constructions"},
+    {"id":"aemeasurable_pi_lambda","label":"aemeasurable_pi_lambda","full":"aemeasurable_pi_lambda","kind":"mathlib","decl":"thm","module":"Mathlib.MeasureTheory.Measure.MeasureSpaceDef"},
+    {"id":"Finite.to_countable","label":"to_countable","full":"Finite.to_countable","kind":"mathlib","decl":"thm","module":"Mathlib.Data.Countable.Defs"},
+    {"id":"Finite.of_fintype","label":"of_fintype","full":"Finite.of_fintype","kind":"mathlib","decl":"thm","module":"Mathlib.Data.Fintype.EquivFin"},
     {"id":"ProbabilityTheory.iIndepFun_iff_map_fun_eq_pi_map","label":"iIndepFun_iff_map_fun_eq_pi_map","full":"ProbabilityTheory.iIndepFun_iff_map_fun_eq_pi_map","kind":"mathlib","decl":"thm","module":"Mathlib.Probability.Independence.Basic"},
-    {"id":"Measurable.aemeasurable","label":"aemeasurable","full":"Measurable.aemeasurable","kind":"mathlib","decl":"thm","module":"Mathlib.MeasureTheory.Measure.MeasureSpaceDef"},
     {"id":"MeasureTheory.memLp_map_measure_iff","label":"memLp_map_measure_iff","full":"MeasureTheory.memLp_map_measure_iff","kind":"mathlib","decl":"thm","module":"Mathlib.MeasureTheory.Function.LpSeminorm.Basic"},
     {"id":"Measurable.aestronglyMeasurable","label":"aestronglyMeasurable","full":"Measurable.aestronglyMeasurable","kind":"mathlib","decl":"thm","module":"Mathlib.MeasureTheory.Function.StronglyMeasurable.AEStronglyMeasurable"},
     {"id":"PseudoEMetricSpace.pseudoMetrizableSpace","label":"pseudoMetrizableSpace","full":"PseudoEMetricSpace.pseudoMetrizableSpace","kind":"mathlib","decl":"thm","module":"Mathlib.Topology.Metrizable.Uniformity"},
@@ -14,6 +15,7 @@
     {"id":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound","label":"variance_le_efronSteinBound","full":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound","kind":"repo","decl":"thm","module":"StatLean.ConcentrationInequalities.EfronStein.Tensorization"},
     {"id":"MeasureTheory.Measure.isProbabilityMeasure_map","label":"isProbabilityMeasure_map","full":"MeasureTheory.Measure.isProbabilityMeasure_map","kind":"mathlib","decl":"thm","module":"Mathlib.MeasureTheory.Measure.Typeclasses.Probability"},
     {"id":"ProbabilityTheory.variance_map","label":"variance_map","full":"ProbabilityTheory.variance_map","kind":"mathlib","decl":"thm","module":"Mathlib.Probability.Moments.Variance"},
+    {"id":"Measurable.aemeasurable","label":"aemeasurable","full":"Measurable.aemeasurable","kind":"mathlib","decl":"thm","module":"Mathlib.MeasureTheory.Measure.MeasureSpaceDef"},
     {"id":"StatLean.ConcentrationInequalities.condMeanAt","label":"condMeanAt","full":"StatLean.ConcentrationInequalities.condMeanAt","kind":"repo","decl":"def","module":"StatLean.ConcentrationInequalities.EfronStein.Defs"},
     {"id":"StatLean.ConcentrationInequalities.varOn","label":"varOn","full":"StatLean.ConcentrationInequalities.varOn","kind":"repo","decl":"def","module":"StatLean.ConcentrationInequalities.EfronStein.Tensorization"},
     {"id":"StatLean.ConcentrationInequalities.integral_varOn_le","label":"integral_varOn_le","full":"StatLean.ConcentrationInequalities.integral_varOn_le","kind":"repo","decl":"thm","module":"StatLean.ConcentrationInequalities.EfronStein.Tensorization"},
@@ -44,15 +46,14 @@
     {"id":"Filter.mp_mem","label":"mp_mem","full":"Filter.mp_mem","kind":"mathlib","decl":"thm","module":"Mathlib.Order.Filter.Defs"},
     {"id":"StatLean.ConcentrationInequalities.avgOn_insert","label":"avgOn_insert","full":"StatLean.ConcentrationInequalities.avgOn_insert","kind":"repo","decl":"thm","module":"StatLean.ConcentrationInequalities.EfronStein.Tensorization"},
     {"id":"MeasureTheory.MemLp.integrable","label":"integrable","full":"MeasureTheory.MemLp.integrable","kind":"mathlib","decl":"thm","module":"Mathlib.MeasureTheory.Function.L1Space.Integrable"},
-    {"id":"one_le_two","label":"one_le_two","full":"one_le_two","kind":"mathlib","decl":"thm","module":"Mathlib.Algebra.Order.Monoid.NatCast"},
-    {"id":"IsOrderedAddMonoid.toAddLeftMono","label":"toAddLeftMono","full":"IsOrderedAddMonoid.toAddLeftMono","kind":"mathlib","decl":"thm","module":"Mathlib.Algebra.Order.Monoid.Defs"},
-    {"id":"MeasureTheory.IsZeroOrProbabilityMeasure.toIsFiniteMeasure","label":"toIsFiniteMeasure","full":"MeasureTheory.IsZeroOrProbabilityMeasure.toIsFiniteMeasure","kind":"mathlib","decl":"thm","module":"Mathlib.MeasureTheory.Measure.Typeclasses.Probability"}
+    {"id":"one_le_two","label":"one_le_two","full":"one_le_two","kind":"mathlib","decl":"thm","module":"Mathlib.Algebra.Order.Monoid.NatCast"}
   ],
   "edges": [
     {"source":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun","target":"StatLean.ConcentrationInequalities.efronSteinBound"},
-    {"source":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun","target":"measurable_pi_lambda"},
+    {"source":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun","target":"aemeasurable_pi_lambda"},
+    {"source":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun","target":"Finite.to_countable"},
+    {"source":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun","target":"Finite.of_fintype"},
     {"source":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun","target":"ProbabilityTheory.iIndepFun_iff_map_fun_eq_pi_map"},
-    {"source":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun","target":"Measurable.aemeasurable"},
     {"source":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun","target":"MeasureTheory.memLp_map_measure_iff"},
     {"source":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun","target":"Measurable.aestronglyMeasurable"},
     {"source":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun","target":"PseudoEMetricSpace.pseudoMetrizableSpace"},
@@ -61,6 +62,7 @@
     {"source":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun","target":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound"},
     {"source":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun","target":"MeasureTheory.Measure.isProbabilityMeasure_map"},
     {"source":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun","target":"ProbabilityTheory.variance_map"},
+    {"source":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound_of_iIndepFun","target":"Measurable.aemeasurable"},
     {"source":"StatLean.ConcentrationInequalities.efronSteinBound","target":"StatLean.ConcentrationInequalities.condMeanAt"},
     {"source":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound","target":"StatLean.ConcentrationInequalities.efronSteinBound"},
     {"source":"StatLean.ConcentrationInequalities.variance_le_efronSteinBound","target":"StatLean.ConcentrationInequalities.varOn"},
@@ -109,8 +111,6 @@
     {"source":"StatLean.ConcentrationInequalities.integral_varOn_insert","target":"Filter.mp_mem"},
     {"source":"StatLean.ConcentrationInequalities.integral_varOn_insert","target":"StatLean.ConcentrationInequalities.avgOn_insert"},
     {"source":"StatLean.ConcentrationInequalities.integral_varOn_insert","target":"MeasureTheory.MemLp.integrable"},
-    {"source":"StatLean.ConcentrationInequalities.integral_varOn_insert","target":"one_le_two"},
-    {"source":"StatLean.ConcentrationInequalities.integral_varOn_insert","target":"IsOrderedAddMonoid.toAddLeftMono"},
-    {"source":"StatLean.ConcentrationInequalities.integral_varOn_insert","target":"MeasureTheory.IsZeroOrProbabilityMeasure.toIsFiniteMeasure"}
+    {"source":"StatLean.ConcentrationInequalities.integral_varOn_insert","target":"one_le_two"}
   ]
 }

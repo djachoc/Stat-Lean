@@ -20,8 +20,8 @@ The file ends with `variance_le_efronSteinBound`, the Efron–Stein inequality i
 **Reference.** Stéphane Boucheron, Gábor Lugosi and Pascal Massart, *Concentration
 Inequalities: A Nonasymptotic Theory of Independence*, Oxford University Press, 2013
 (ISBN 978-0-19-953525-5), §3.1. The book runs the argument through the Doob martingale of
-the natural filtration; this file instead proves the inequality through a block recursion
-that stays on the canonical product space.
+the natural filtration; this file realizes the same variance decomposition and Jensen
+step as a block recursion on the canonical product space.
 
 **Proof formalization notes.** `avgOn S f x` integrates the *whole* product measure but
 only uses the `S`-coordinates of the integrating variable (see `ForMathlib/PiMix`), which
@@ -30,6 +30,10 @@ not pointwise ones: for a fixed `x` the slice `z ↦ f (mixAt S x z)` need not b
 integrable, only for almost every `x`. `memLp_avgOn` is the contraction property of the
 averaging operator, proved exactly as `memLp_condMeanAt`: Jensen dominates
 `(avgOn S f)²` by `avgOn S (f²)`, whose integral is `∫ f²` by `integral_integral_mixAt`.
+For the suffix block $S = \{i+1,\ldots,n\}$, `avgOn S f` is $\mathbf{E}_i Z$;
+`avgOn_condMeanAt_insert` realizes equation (3.1), `integral_varOn_insert` supplies the
+variance-increment decomposition, and `integral_avgOn_sub_condMeanAt_sq_le` is the Jensen
+step.
 -/
 
 open MeasureTheory ProbabilityTheory Set
