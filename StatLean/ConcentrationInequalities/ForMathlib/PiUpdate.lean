@@ -8,10 +8,9 @@ On a finite product $\bigotimes_j \mu_j$ of probability measures, replacing the 
 coordinate of a sample by an independent draw from $\mu_i$ leaves the law unchanged:
 the map $(x, y) \mapsto \mathrm{update}\,x\,i\,y$ pushes
 $\left(\bigotimes_j \mu_j\right) \otimes \mu_i$ forward to $\bigotimes_j \mu_j$.
-Absent from Mathlib at our pin (verified: `Mathlib/MeasureTheory/Constructions/Pi.lean`
-carries `measurePreserving_piEquivPiSubtypeProd` and `measurePreserving_piFinSuccAbove`,
-but nothing about `Function.update`; `Mathlib/MeasureTheory/Integral/Marginal.lean` has
-the `ℝ≥0∞`-valued `lmarginal` only). Mathlib-only imports — candidate upstream.
+Mathlib supplies the joint measurability of this map as `measurable_update'`. This file
+adds the product-law measure-preserving and integral results. It has Mathlib-only imports
+and is a candidate for upstreaming those probability-specific results.
 
 This is the product-space mechanism through which independence enters the Efron–Stein
 development. It licenses reading $Z_i' = f(X_1, \dots, X_i', \dots, X_n)$ as an
@@ -45,15 +44,6 @@ open scoped ENNReal BigOperators
 namespace StatLean.ConcentrationInequalities
 
 variable {ι : Type*} [DecidableEq ι] {𝓧 : ι → Type*} [∀ i, MeasurableSpace (𝓧 i)]
-
-/-- Updating the `i`-th coordinate is jointly measurable in the sample and the new value. -/
-theorem measurable_updateAt (i : ι) :
-    Measurable (fun p : (Π j, 𝓧 j) × 𝓧 i => Function.update p.1 i p.2) := by
-  refine measurable_pi_lambda _ fun j => ?_
-  by_cases h : j = i
-  · subst h
-    simpa only [Function.update_self] using measurable_snd
-  · simpa only [Function.update_of_ne h] using (measurable_pi_apply j).comp measurable_fst
 
 omit [∀ i, MeasurableSpace (𝓧 i)] in
 /-- The preimage of a measurable rectangle under the update map is again a rectangle:
@@ -89,9 +79,9 @@ Boucheron–Lugosi–Massart 2013, §3.1, p. 54). -/
 theorem measurePreserving_updateAt (i : ι) :
     MeasurePreserving (fun p : (Π j, 𝓧 j) × 𝓧 i => Function.update p.1 i p.2)
       ((Measure.pi μ).prod (μ i)) (Measure.pi μ) := by
-  refine ⟨measurable_updateAt i, ?_⟩
+  refine ⟨measurable_update' (a := i), ?_⟩
   refine (Measure.pi_eq fun s hs => ?_).symm
-  rw [Measure.map_apply (measurable_updateAt i) (MeasurableSet.univ_pi hs),
+  rw [Measure.map_apply (measurable_update' (a := i)) (MeasurableSet.univ_pi hs),
     preimage_updateAt i s, Measure.prod_prod, Measure.pi_pi]
   have hrw : (fun j => μ j (Function.update s i univ j))
       = Function.update (fun j => μ j (s j)) i (μ i univ) := by
@@ -121,7 +111,7 @@ theorem integral_integral_update (i : ι) {f : (Π j, 𝓧 j) → ℝ}
     _ = ∫ x, f x ∂(Measure.pi μ) := by
         have hmap := integral_map (μ := (Measure.pi μ).prod (μ i))
           (φ := fun p : (Π j, 𝓧 j) × 𝓧 i => Function.update p.1 i p.2)
-          (measurable_updateAt i).aemeasurable hmeas
+          (measurable_update' (a := i)).aemeasurable hmeas
         rw [hmp.map_eq] at hmap
         exact hmap.symm
 

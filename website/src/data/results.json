@@ -41418,16 +41418,16 @@
     "shortRef": "Boucheron–Lugosi–Massart (2013), Thm 3.1",
     "file": "StatLean/ConcentrationInequalities/EfronStein/Tensorization.lean",
     "docGenUrl": "../docs/StatLean/ConcentrationInequalities/EfronStein/Tensorization.html#StatLean.ConcentrationInequalities.variance_le_efronSteinBound",
-    "informal": "<p>Let $X = (X_1, \\dots, X_n)$ be a sample whose <span data-link=\"h1\">coordinates are independent</span>, not necessarily identically distributed, and let $Z = f(X)$ for a <span data-link=\"h3\">measurable</span> function $f$ with a <span data-link=\"h2\">finite second moment</span>. Write $$\\mathbf{E}^{(i)} Z \\;=\\; \\int f(X_1, \\dots, x_i, \\dots, X_n) \\, d\\mu_i(x_i)$$ for the average of $Z$ over a fresh draw of the $i$-th coordinate, every other coordinate held fixed. Then $$\\operatorname{Var}(Z) \\;\\le\\; \\sum_{i=1}^{n} \\mathbb{E}\\bigl[(Z - \\mathbf{E}^{(i)} Z)^2\\bigr].$$</p>",
+    "informal": "<p>Let <span data-link=\"h1\">$\\mu_1, \\dots, \\mu_n$ be probability measures</span>, and let $X = (X_1, \\dots, X_n)$ be the coordinate process under their product law, so the coordinates are independent but need not be identically distributed. Let $Z = f(X)$ for a <span data-link=\"h3\">measurable</span> function $f$ with a <span data-link=\"h2\">finite second moment</span>. Write $$\\mathbf{E}^{(i)} Z \\;=\\; \\int f(X_1, \\dots, x_i, \\dots, X_n) \\, d\\mu_i(x_i)$$ for the average of $Z$ over a fresh draw of the $i$-th coordinate, every other coordinate held fixed. Then $$\\operatorname{Var}(Z) \\;\\le\\; \\sum_{i=1}^{n} \\mathbb{E}\\bigl[(Z - \\mathbf{E}^{(i)} Z)^2\\bigr].$$</p>",
     "summary": "The variance of a square-integrable function of independent coordinates is at most the sum, over coordinates, of the expected squared deviation from its average over a fresh draw of that coordinate.",
     "leanSignature": "theorem variance_le_efronSteinBound\n    {ι : Type*} [Fintype ι] [DecidableEq ι] {𝓧 : ι → Type*}\n    [∀ i, MeasurableSpace (𝓧 i)] (μ : ∀ i, Measure (𝓧 i))\n    [∀ i, IsProbabilityMeasure (μ i)] {f : (Π j, 𝓧 j) → ℝ}\n    (hfm : Measurable f) (hf : MemLp f 2 (Measure.pi μ)) :\n    Var[f; Measure.pi μ] ≤ efronSteinBound μ f",
-    "formalizationNotes": "The independent coordinates are realized canonically as the coordinates of a finite product of probability spaces, so the leave-one-out conditional mean $\\mathbf{E}^{(i)}$ is a plain integral in one coordinate rather than a conditional expectation, and no filtration is needed. The source runs the argument through the Doob martingale of the natural filtration; the formalization instead tensorizes the variance over blocks of coordinates, by induction on a finite set $S$ of coordinates: growing $S$ by one coordinate adds exactly the variance of the block average in that coordinate (the law of total variance), and Jensen's inequality bounds that increment by the corresponding Efron-Stein summand. Independence enters through the fact that redrawing a coordinate leaves the product law unchanged, proved here directly from the product-measure construction. Boucheron–Lugosi–Massart §3.9 presents Theorem 3.1 as an improved form of the earlier Efron–Stein result; see the bibliographic comments.",
+    "formalizationNotes": "The independent coordinates are realized canonically as the coordinates of a finite product of probability spaces, so the leave-one-out conditional mean $\\mathbf{E}^{(i)}$ is a plain integral in one coordinate rather than a conditional expectation, and no filtration is needed. The source runs the argument through the Doob martingale of the natural filtration; the formalization instead tensorizes the variance over blocks of coordinates, by induction on a finite set $S$ of coordinates: growing $S$ by one coordinate adds exactly the variance of the block average in that coordinate (the law of total variance), and Jensen's inequality bounds that increment by the corresponding Efron–Stein summand. Independence enters through the fact that redrawing a coordinate leaves the product law unchanged, proved here directly from the product-measure construction. Boucheron–Lugosi–Massart §3.9 presents Theorem 3.1 as an improved form of the earlier Efron–Stein result; see the bibliographic comments.",
     "hypotheses": [
       {
         "id": "h1",
         "leanToken": "IsProbabilityMeasure (μ i)",
-        "label": "Independent coordinates",
-        "note": "The sample is drawn from the product law $\\bigotimes_j \\mu_j$, so its coordinates are independent; they need not be identically distributed."
+        "label": "Probability marginals",
+        "note": "Each $\\mu_i$ is a probability measure. Sampling from their product law makes the coordinate process independent; the marginals need not be identical."
       },
       {
         "id": "h2",
@@ -41455,7 +41455,7 @@
       "biblio": "The inequality takes its name from B. Efron and C. Stein, “The jackknife estimate of variance,” *The Annals of Statistics* **9**(3), 1981, pp. 586–596. Boucheron–Lugosi–Massart §3.9 describes that result as an earlier version with extra conditions and a suboptimal constant, and credits improved versions and the form in Theorem 3.1 to Steele (1986) and Rhee and Talagrand (1986). In the 1981 paper, Theorem 1 gives an exact jackknife-bias identity in the symmetric iid setting, while Theorem 2 bounds the variance of the average leave-one-out statistic. Boucheron–Lugosi–Massart also notes that its martingale-difference proof in §3.1 appears in Rhee and Talagrand (1986)."
     },
     "keywords": [
-      "Efron-Stein inequality",
+      "Efron–Stein inequality",
       "tensorization of the variance",
       "concentration inequality"
     ]
@@ -41471,16 +41471,16 @@
     "shortRef": "Boucheron–Lugosi–Massart (2013), Thm 3.1",
     "file": "StatLean/ConcentrationInequalities/EfronStein/Defs.lean",
     "docGenUrl": "../docs/StatLean/ConcentrationInequalities/EfronStein/Defs.html#StatLean.ConcentrationInequalities.efronSteinBound_eq_half_sum",
-    "informal": "<p>Let $X = (X_1, \\dots, X_n)$ be a sample whose <span data-link=\"h1\">coordinates are independent</span>, not necessarily identically distributed, and let $Z = f(X)$ for a <span data-link=\"h3\">measurable</span> function $f$ with a <span data-link=\"h2\">finite second moment</span>. Let $X_i'$ be an independent copy of $X_i$ and write $Z_i' = f(X_1, \\dots, X_i', \\dots, X_n)$ for the value of $f$ after the $i$-th coordinate is redrawn. Then the quantity $$v \\;=\\; \\sum_{i=1}^{n} \\mathbb{E}\\bigl[(Z - \\mathbf{E}^{(i)} Z)^2\\bigr], \\qquad \\mathbf{E}^{(i)} Z = \\int f(X_1, \\dots, x_i, \\dots, X_n) \\, d\\mu_i(x_i),$$ which bounds $\\operatorname{Var}(Z)$ in the Efron–Stein inequality, admits the resampled form $$v \\;=\\; \\tfrac12 \\sum_{i=1}^{n} \\mathbb{E}\\bigl[(Z - Z_i')^2\\bigr].$$</p>",
-    "summary": "The Efron-Stein bound equals one half of the sum, over coordinates, of the expected squared change in the statistic when that coordinate is redrawn from an independent copy.",
+    "informal": "<p>Let <span data-link=\"h1\">$\\mu_1, \\dots, \\mu_n$ be probability measures</span>, and let $X = (X_1, \\dots, X_n)$ be the coordinate process under their product law, so the coordinates are independent but need not be identically distributed. Let $Z = f(X)$ for a <span data-link=\"h3\">measurable</span> function $f$ with a <span data-link=\"h2\">finite second moment</span>. Let $X_i'$ be an independent copy of $X_i$ and write $Z_i' = f(X_1, \\dots, X_i', \\dots, X_n)$ for the value of $f$ after the $i$-th coordinate is redrawn. Then the quantity $$v \\;=\\; \\sum_{i=1}^{n} \\mathbb{E}\\bigl[(Z - \\mathbf{E}^{(i)} Z)^2\\bigr], \\qquad \\mathbf{E}^{(i)} Z = \\int f(X_1, \\dots, x_i, \\dots, X_n) \\, d\\mu_i(x_i),$$ which bounds $\\operatorname{Var}(Z)$ in the Efron–Stein inequality, admits the resampled form $$v \\;=\\; \\tfrac12 \\sum_{i=1}^{n} \\mathbb{E}\\bigl[(Z - Z_i')^2\\bigr].$$</p>",
+    "summary": "The Efron–Stein bound equals one half of the sum, over coordinates, of the expected squared change in the statistic when that coordinate is redrawn from an independent copy.",
     "leanSignature": "theorem efronSteinBound_eq_half_sum\n    {ι : Type*} [Fintype ι] [DecidableEq ι] {𝓧 : ι → Type*}\n    [∀ i, MeasurableSpace (𝓧 i)] (μ : ∀ i, Measure (𝓧 i))\n    [∀ i, IsProbabilityMeasure (μ i)] {f : (Π j, 𝓧 j) → ℝ}\n    (hfm : Measurable f) (hf : MemLp f 2 (Measure.pi μ)) :\n    efronSteinBound μ f\n      = (1 / 2) * ∑ i, ∫ x, ∫ y, (f x - f (Function.update x i y)) ^ 2 ∂(μ i)\n          ∂(Measure.pi μ)",
     "formalizationNotes": "Stated on the canonical product of probability spaces, where $\\mathbf{E}^{(i)}$ is a plain integral in the $i$-th coordinate. The resampled copy is expressed by updating that coordinate rather than by introducing a second product space, so the identity is an iterated integral over the sample and one fresh coordinate. The proof combines two elementary facts: the variance of a square-integrable function equals half the averaged squared difference of two independent copies, and averaging over a fresh $i$-th coordinate leaves an expectation unchanged. The source states this chain inside the proof of Theorem 3.1, together with the one-sided and variational forms of $v$, which are not formalized here.",
     "hypotheses": [
       {
         "id": "h1",
         "leanToken": "IsProbabilityMeasure (μ i)",
-        "label": "Independent coordinates",
-        "note": "The sample is drawn from the product law $\\bigotimes_j \\mu_j$, so its coordinates are independent; they need not be identically distributed."
+        "label": "Probability marginals",
+        "note": "Each $\\mu_i$ is a probability measure. Sampling from their product law makes the coordinate process independent; the marginals need not be identical."
       },
       {
         "id": "h2",
@@ -41508,7 +41508,7 @@
       "biblio": "The inequality takes its name from B. Efron and C. Stein, “The jackknife estimate of variance,” *The Annals of Statistics* **9**(3), 1981, pp. 586–596. Boucheron–Lugosi–Massart §3.9 describes that result as an earlier version with extra conditions and a suboptimal constant, and credits improved versions and the form in Theorem 3.1 to Steele (1986) and Rhee and Talagrand (1986). In the 1981 paper, Theorem 1 gives an exact jackknife-bias identity in the symmetric iid setting, while Theorem 2 bounds the variance of the average leave-one-out statistic. Boucheron–Lugosi–Massart also notes that its martingale-difference proof in §3.1 appears in Rhee and Talagrand (1986)."
     },
     "keywords": [
-      "Efron-Stein inequality",
+      "Efron–Stein inequality",
       "resampling",
       "concentration inequality"
     ]

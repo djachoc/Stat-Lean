@@ -152,7 +152,7 @@ theorem update_mixAt_insert (S : Finset ι) {i : ι} (x z : Π j, 𝓧 j) (y : �
   funext j
   by_cases hj : j = i
   · subst hj; simp
-  · simp [mixAt, Finset.mem_insert, hj]
+  · simp [mixAt, hj]
 
 /-- The companion of `avgOn_insert` with the two operations in the other order. Unlike
 `avgOn_insert` this one needs no Fubini swap. -/

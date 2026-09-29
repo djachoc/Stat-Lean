@@ -6,12 +6,13 @@ import Mathlib.MeasureTheory.Function.L2Space
 
 `PiUpdate` shows that redrawing a *single* coordinate of a finite product of probability
 measures leaves the law unchanged. This file does the same for an arbitrary block
-`S : Finset ι` of coordinates: the "mix" map
+`S : Finset ι` of coordinates. The domain-specific `mixAt` name is a transparent alias
+for `Finset.piecewise`, and the map
 $$ (x, z) \;\longmapsto\; \bigl(j \mapsto \text{if } j \in S \text{ then } z_j
    \text{ else } x_j\bigr) $$
 pushes $\left(\bigotimes_j \mu_j\right) \otimes \left(\bigotimes_j \mu_j\right)$ forward
-to $\bigotimes_j \mu_j$. Absent from Mathlib at our pin (as for `PiUpdate`); Mathlib-only
-imports — candidate upstream.
+to $\bigotimes_j \mu_j$. The block measure-preserving and integral results are absent
+from Mathlib at our pin; the file has Mathlib-only imports and is a candidate upstream.
 
 The second argument ranges over the *whole* product rather than over `∀ j : S, 𝓧 j`; the
 coordinates outside `S` are simply discarded. This costs nothing (the extra marginals
@@ -47,9 +48,9 @@ namespace StatLean.ConcentrationInequalities
 variable {ι : Type*} [DecidableEq ι] {𝓧 : ι → Type*} [∀ i, MeasurableSpace (𝓧 i)]
 
 /-- **The mix map.** `mixAt S x z` takes its `S`-coordinates from `z` and all others
-from `x`. -/
-def mixAt (S : Finset ι) (x z : Π j, 𝓧 j) : Π j, 𝓧 j :=
-  fun j => if j ∈ S then z j else x j
+from `x`. This is the domain-specific alias for `Finset.piecewise S z x`. -/
+abbrev mixAt (S : Finset ι) (x z : Π j, 𝓧 j) : Π j, 𝓧 j :=
+  S.piecewise z x
 
 omit [∀ i, MeasurableSpace (𝓧 i)] in
 @[simp] theorem mixAt_empty (x z : Π j, 𝓧 j) : mixAt ∅ x z = x := by
@@ -64,8 +65,10 @@ theorem measurable_mixAt (S : Finset ι) :
     Measurable (fun p : (Π j, 𝓧 j) × (Π j, 𝓧 j) => mixAt S p.1 p.2) := by
   refine measurable_pi_lambda _ fun j => ?_
   by_cases h : j ∈ S
-  · simpa only [mixAt, h, if_true] using (measurable_pi_apply j).comp measurable_snd
-  · simpa only [mixAt, h, if_false] using (measurable_pi_apply j).comp measurable_fst
+  · simpa only [mixAt, Finset.piecewise, h, if_true] using
+      (measurable_pi_apply j).comp measurable_snd
+  · simpa only [mixAt, Finset.piecewise, h, if_false] using
+      (measurable_pi_apply j).comp measurable_fst
 
 omit [∀ i, MeasurableSpace (𝓧 i)] in
 /-- The preimage of a measurable rectangle under the mix map splits into the rectangle of
@@ -77,7 +80,7 @@ private theorem preimage_mixAt (S : Finset ι) (s : ∀ j, Set (𝓧 j)) :
           ×ˢ (univ.pi fun j => if j ∈ S then s j else (univ : Set (𝓧 j))) := by
   ext ⟨x, z⟩
   simp only [Set.mem_preimage, Set.mem_pi, Set.mem_univ, forall_true_left, Set.mem_prod,
-    mixAt]
+    mixAt, Finset.piecewise]
   constructor
   · intro h
     refine ⟨fun j => ?_, fun j => ?_⟩
