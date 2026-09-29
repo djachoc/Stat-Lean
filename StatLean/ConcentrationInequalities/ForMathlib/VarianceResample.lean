@@ -15,15 +15,14 @@ search for `variance_eq_half`, `integrable_sq` and the `IdentDistrib` API in
 
 This is the brick that converts the leave-one-out conditional variance
 $\operatorname{Var}^{(i)}(Z)$ of the Efron–Stein bound into its resampled form
-$\tfrac12\,\mathbb{E}\,(Z - Z_i')^2$, and it is the only place in that development where
-the "independent copy" enters.
+$\tfrac12\,\mathbb{E}\,(Z - Z_i')^2$. It supplies the iid-copy variance identity; the
+product-law interpretation of the replacement coordinate is supplied by `PiUpdate`.
 
 **Reference.** Stéphane Boucheron, Gábor Lugosi and Pascal Massart, *Concentration
 Inequalities: A Nonasymptotic Theory of Independence*, Oxford University Press, 2013
-(ISBN 978-0-19-953525-5), §3.1, inside the proof of Theorem 3.1: "one may simply use
-(conditionally) the elementary fact that if $X$ and $Y$ are independent and identically
-distributed real-valued random variables, then $\operatorname{Var}(X) = (1/2)
-\mathbb{E}[(X-Y)^2]$."
+(ISBN 978-0-19-953525-5), §3.1, p. 55. Inside the proof of Theorem 3.1, the book
+conditionally applies the elementary iid-copy identity
+$\operatorname{Var}(X) = \tfrac12\mathbb{E}[(X-Y)^2]$.
 
 **Proof formalization notes.** Pure expansion: center by $m = \nu[g]$, write
 $(g(a) - g(b))^2 = (g(a) - m)^2 - 2 (g(a) - m)(g(b) - m) + (g(b) - m)^2$, and integrate in

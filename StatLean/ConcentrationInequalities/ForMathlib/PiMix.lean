@@ -25,8 +25,8 @@ block-by-block variance recursion into a statement about `⨂ⱼ μ j` itself.
 
 **Reference.** Stéphane Boucheron, Gábor Lugosi and Pascal Massart, *Concentration
 Inequalities: A Nonasymptotic Theory of Independence*, Oxford University Press, 2013
-(ISBN 978-0-19-953525-5), §3.1; the block form is the repeated application of identity
-(3.1) that underlies the tensorization of the variance.
+(ISBN 978-0-19-953525-5), §3.1. The block form is the analogue of the product-space
+Fubini argument used there for coordinatewise resampling.
 
 **Proof formalization notes.** Identical in shape to `measurePreserving_updateAt`:
 `Measure.pi_eq` reduces to measurable rectangles, and the preimage of `Set.univ.pi s`

@@ -29,16 +29,14 @@ that opens the section. The identity proved here is the chain
 $v = \sum_i \mathbf{E}[\operatorname{Var}^{(i)}(Z)] = \tfrac12 \sum_i
 \mathbf{E}[(Z - Z_i')^2]$ inside the proof of Theorem 3.1.
 
-**Not the 1981 statement.** Theorem 3.1 is *not* the theorem proved in B. Efron and
-C. Stein, "The jackknife estimate of variance", *Ann. Statist.* **9** (1981), 586–596.
-Boucheron–Lugosi–Massart record this themselves in §3.9: "While the original result of
-Efron and Stein had some extra conditions and came with a sub-optimal constant, Steele
-(1986) and Rhee and Talagrand (1986) obtained improved versions and the form presented in
-Theorem 3.1." Efron and Stein's Theorem 1 assumes the $X_i$ i.i.d. and $f$ symmetric and
-delivers an exact identity for the bias of the jackknife variance estimate at sample size
-$n-1$; their Theorem 2 constrains the variance of the *average of the leave-one-out
-statistics* only. Neither is the statement formalized here, and neither should be cited
-for it.
+**Relation to the 1981 result.** Boucheron–Lugosi–Massart §3.9 describes the result of
+B. Efron and C. Stein, "The jackknife estimate of variance", *Ann. Statist.* **9**
+(1981), 586–596, as an earlier version with extra conditions and a suboptimal constant;
+it credits Steele (1986) and Rhee and Talagrand (1986) with improved versions and the
+form presented in Theorem 3.1. The 1981 paper works from the jackknife setting of a
+symmetric statistic of i.i.d. observations: its Theorem 1 gives an exact jackknife-bias
+identity, while Theorem 2 bounds the variance of the average leave-one-out statistic.
+The theorem formalized here is the broader, improved form stated by Boucheron–Lugosi–Massart.
 
 **Proof formalization notes.** Everything is done on the canonical product space, so
 $\mathbf{E}^{(i)}$ is a plain integral in one coordinate rather than a conditional
