@@ -207,7 +207,7 @@ noncomputable def varOn (S : Finset ι) (f : (Π j, 𝓧 j) → ℝ) (x : Π j, 
 
 @[simp] theorem varOn_empty : varOn μ ∅ f = 0 := by
   funext x
-  simp only [varOn, mixAt_empty]
+  simp only [varOn, mixAt, Finset.piecewise_empty]
   rw [variance_eq_integral aemeasurable_const]
   simp
 

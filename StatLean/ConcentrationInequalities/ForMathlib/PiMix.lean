@@ -52,14 +52,6 @@ from `x`. This is the domain-specific alias for `Finset.piecewise S z x`. -/
 abbrev mixAt (S : Finset ι) (x z : Π j, 𝓧 j) : Π j, 𝓧 j :=
   S.piecewise z x
 
-omit [∀ i, MeasurableSpace (𝓧 i)] in
-@[simp] theorem mixAt_empty (x z : Π j, 𝓧 j) : mixAt ∅ x z = x := by
-  funext j; simp [mixAt]
-
-omit [∀ i, MeasurableSpace (𝓧 i)] in
-@[simp] theorem mixAt_univ [Fintype ι] (x z : Π j, 𝓧 j) : mixAt Finset.univ x z = z := by
-  funext j; simp [mixAt]
-
 /-- Mixing is jointly measurable. -/
 theorem measurable_mixAt (S : Finset ι) :
     Measurable (fun p : (Π j, 𝓧 j) × (Π j, 𝓧 j) => mixAt S p.1 p.2) := by

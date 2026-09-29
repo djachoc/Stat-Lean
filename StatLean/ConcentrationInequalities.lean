@@ -27,6 +27,7 @@ import StatLean.ConcentrationInequalities.ForMathlib.PiMix
 import StatLean.ConcentrationInequalities.ForMathlib.VarianceResample
 import StatLean.ConcentrationInequalities.EfronStein.Defs
 import StatLean.ConcentrationInequalities.EfronStein.Tensorization
+import StatLean.ConcentrationInequalities.EfronStein.IndepFun
 import StatLean.ConcentrationInequalities.Orlicz.Defs
 import StatLean.ConcentrationInequalities.Orlicz.Generators
 import StatLean.ConcentrationInequalities.Orlicz.Basic

@@ -68,9 +68,10 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι] {𝓧 : ι → Type*}
   [∀ i, IsProbabilityMeasure (μ i)]
 
 /-- **The leave-one-out conditional mean** `E^{(i)} Z`: the average of `f` over a fresh
-`i`-th coordinate, holding every other coordinate fixed. On the canonical product space
-this coordinate integral represents the conditional mean under the measurability and
-integrability hypotheses used by the theorems below. -/
+`i`-th coordinate, holding every other coordinate fixed. Under the measurability and
+integrability hypotheses used below, it is a version of the conditional expectation of
+`f` given all coordinates other than `i`; this identification with Mathlib's `condExp`
+is not formalized in this PR. -/
 noncomputable def condMeanAt (i : ι) (f : (Π j, 𝓧 j) → ℝ) (x : Π j, 𝓧 j) : ℝ :=
   ∫ y, f (Function.update x i y) ∂(μ i)
 
@@ -80,12 +81,6 @@ noncomputable def efronSteinBound (f : (Π j, 𝓧 j) → ℝ) : ℝ :=
   ∑ i, ∫ x, (f x - condMeanAt μ i f x) ^ 2 ∂(Measure.pi μ)
 
 variable {f : (Π j, 𝓧 j) → ℝ}
-
-omit [Fintype ι] [∀ i, IsProbabilityMeasure (μ i)] in
-/-- With the sample held fixed, replacing the `i`-th coordinate is measurable. -/
-theorem measurable_update_right (i : ι) (x : Π j, 𝓧 j) :
-    Measurable (fun y : 𝓧 i => Function.update x i y) :=
-  (measurable_update' (a := i)).comp (measurable_const.prodMk measurable_id)
 
 omit [Fintype ι] [∀ i, IsProbabilityMeasure (μ i)] in
 /-- **`E^{(i)}` forgets the `i`-th coordinate**: it is invariant under updating that
@@ -109,7 +104,7 @@ theorem ae_memLp_slice (i : ι) (hfm : Measurable f) (hf : MemLp f 2 (Measure.pi
     (measurePreserving_updateAt μ i).integrable_comp_of_integrable hf.integrable_sq
   filter_upwards [hcomp.prod_right_ae] with x hx
   exact (memLp_two_iff_integrable_sq
-    (hfm.comp (measurable_update_right i x)).aestronglyMeasurable).2 hx
+    (hfm.comp (measurable_update (a := i) x)).aestronglyMeasurable).2 hx
 
 /-- **`E^{(i)} Z` is square-integrable.** Jensen dominates `(E^{(i)}Z)²` by `E^{(i)}[Z²]`,
 whose expectation is `E[Z²]`. -/
