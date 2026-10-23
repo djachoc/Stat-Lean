@@ -59,6 +59,12 @@ import StatLean.AsymptoticStatistics.DQM.MovingDirection
 import StatLean.AsymptoticStatistics.DQM.Properties
 import StatLean.AsymptoticStatistics.DQM.SqrtDensityRatio
 import StatLean.AsymptoticStatistics.DQM.ZeroDensity
+import StatLean.AsymptoticStatistics.DependencyGraphCLT.Count
+import StatLean.AsymptoticStatistics.DependencyGraphCLT.CumulantExpansion
+import StatLean.AsymptoticStatistics.DependencyGraphCLT.DepGraph
+import StatLean.AsymptoticStatistics.DependencyGraphCLT.JansonCLT
+import StatLean.AsymptoticStatistics.DependencyGraphCLT.Lemma4
+import StatLean.AsymptoticStatistics.DependencyGraphCLT.Moments
 import StatLean.AsymptoticStatistics.Efficiency.ConvexLinearEfficiency
 import StatLean.AsymptoticStatistics.Efficiency.HajekLeCamConvolution
 import StatLean.AsymptoticStatistics.Efficiency.LocalAsymptoticMinimax
